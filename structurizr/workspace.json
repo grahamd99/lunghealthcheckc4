@@ -6,49 +6,59 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-05-29T13:54:29Z",
+  "lastModifiedDate" : "2025-05-30T14:31:50Z",
   "model" : {
     "people" : [ {
+      "description" : "External user eligible for screening",
       "id" : "1",
       "location" : "Unspecified",
-      "name" : "User",
+      "name" : "P9 Participant users",
       "properties" : {
         "structurizr.dsl.identifier" : "u"
       },
+      "tags" : "Element,Person,Participant"
+    }, {
+      "description" : "Internal staff users including clinical and administrative staff",
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "Staff users",
+      "properties" : {
+        "structurizr.dsl.identifier" : "st"
+      },
       "relationships" : [ {
         "description" : "Uses",
-        "destinationId" : "3",
-        "id" : "5",
-        "sourceId" : "1",
+        "destinationId" : "4",
+        "id" : "6",
+        "sourceId" : "2",
         "tags" : "Relationship"
       }, {
         "description" : "Uses",
-        "destinationId" : "2",
-        "id" : "6",
-        "linkedRelationshipId" : "5",
-        "sourceId" : "1"
+        "destinationId" : "3",
+        "id" : "7",
+        "linkedRelationshipId" : "6",
+        "sourceId" : "2"
       } ],
-      "tags" : "Element,Person"
+      "tags" : "Element,Person,NHS Staff"
     } ],
     "softwareSystems" : [ {
       "containers" : [ {
         "documentation" : { },
-        "id" : "3",
+        "id" : "4",
         "name" : "Web Application",
         "properties" : {
           "structurizr.dsl.identifier" : "ss.wa"
         },
         "relationships" : [ {
           "description" : "Reads from and writes to",
-          "destinationId" : "4",
-          "id" : "7",
-          "sourceId" : "3",
+          "destinationId" : "5",
+          "id" : "8",
+          "sourceId" : "4",
           "tags" : "Relationship"
         } ],
         "tags" : "Element,Container"
       }, {
         "documentation" : { },
-        "id" : "4",
+        "id" : "5",
         "name" : "Database Schema",
         "properties" : {
           "structurizr.dsl.identifier" : "ss.db"
@@ -56,7 +66,7 @@
         "tags" : "Element,Container,Database"
       } ],
       "documentation" : { },
-      "id" : "2",
+      "id" : "3",
       "location" : "Unspecified",
       "name" : "Software System",
       "properties" : {
@@ -67,7 +77,7 @@
   },
   "name" : "Name",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHUgPSBwZXJzb24gIlVzZXIiCiAgICAgICAgc3MgPSBzb2Z0d2FyZVN5c3RlbSAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgIHdhID0gY29udGFpbmVyICJXZWIgQXBwbGljYXRpb24iCiAgICAgICAgICAgIGRiID0gY29udGFpbmVyICJEYXRhYmFzZSBTY2hlbWEiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIkRhdGFiYXNlIgogICAgICAgICAgICB9CiAgICAgICAgfQoKICAgICAgICB1IC0+IHNzLndhICJVc2VzIgogICAgICAgIHNzLndhIC0+IHNzLmRiICJSZWFkcyBmcm9tIGFuZCB3cml0ZXMgdG8iCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHN5c3RlbUNvbnRleHQgc3MgIkRpYWdyYW0xIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgc3MgIkRpYWdyYW0yIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJFbGVtZW50IiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUGVyc29uIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxOTliNjUKICAgICAgICAgICAgICAgIHNoYXBlIHBlcnNvbgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlNvZnR3YXJlIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMWViYTc5CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMyM2Q5OGQKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KCiAgICBjb25maWd1cmF0aW9uIHsKICAgICAgICBzY29wZSBzb2Z0d2FyZXN5c3RlbQogICAgfQoKfQ=="
+    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHUgPSBwZXJzb24gIlA5IFBhcnRpY2lwYW50IHVzZXJzIiAiRXh0ZXJuYWwgdXNlciBlbGlnaWJsZSBmb3Igc2NyZWVuaW5nIiAiUGFydGljaXBhbnQiCiAgICAgICAgc3QgPSBwZXJzb24gIlN0YWZmIHVzZXJzIiAiSW50ZXJuYWwgc3RhZmYgdXNlcnMgaW5jbHVkaW5nIGNsaW5pY2FsIGFuZCBhZG1pbmlzdHJhdGl2ZSBzdGFmZiIgIk5IUyBTdGFmZiIKICAgICAgICBzcyA9IHNvZnR3YXJlU3lzdGVtICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgd2EgPSBjb250YWluZXIgIldlYiBBcHBsaWNhdGlvbiIKICAgICAgICAgICAgZGIgPSBjb250YWluZXIgIkRhdGFiYXNlIFNjaGVtYSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIHN0IC0+IHNzLndhICJVc2VzIgogICAgICAgIHNzLndhIC0+IHNzLmRiICJSZWFkcyBmcm9tIGFuZCB3cml0ZXMgdG8iCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHN5c3RlbUNvbnRleHQgc3MgIkRpYWdyYW0xIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgc3MgIkRpYWdyYW0yIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgICAgIGZvbnRTaXplIDIyCiAgICAgICAgICAgICAgICBzaGFwZSBQZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJQYXJ0aWNpcGFudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNjg2ODY4CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTkhTIFN0YWZmIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwODQyN0IKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzExNjhiZAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4dGVybmFsIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNjg2ODY4CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXhpc3RpbmcgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM5OTk5OTkKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzQzOGRkNQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIldlYiBCcm93c2VyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBXZWJCcm93c2VyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTW9iaWxlIEFwcCIgewogICAgICAgICAgICAgICAgc2hhcGUgTW9iaWxlRGV2aWNlTGFuZHNjYXBlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIEN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUXVldWUiIHsKICAgICAgICAgICAgICAgIHNoYXBlICJQaXBlIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjODViYmYwCiAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9CgogICAgY29uZmlndXJhdGlvbiB7CiAgICAgICAgc2NvcGUgc29mdHdhcmVzeXN0ZW0KICAgIH0KCn0="
   },
   "views" : {
     "configuration" : {
@@ -77,20 +87,46 @@
       "styles" : {
         "elements" : [ {
           "color" : "#ffffff",
-          "tag" : "Element"
-        }, {
-          "background" : "#199b65",
+          "fontSize" : 22,
           "shape" : "Person",
           "tag" : "Person"
         }, {
-          "background" : "#1eba79",
+          "background" : "#686868",
+          "tag" : "Participant"
+        }, {
+          "background" : "#08427b",
+          "tag" : "NHS Staff"
+        }, {
+          "background" : "#1168bd",
+          "color" : "#ffffff",
           "tag" : "Software System"
         }, {
-          "background" : "#23d98d",
+          "background" : "#686868",
+          "tag" : "External System"
+        }, {
+          "background" : "#999999",
+          "color" : "#ffffff",
+          "tag" : "Existing System"
+        }, {
+          "background" : "#438dd5",
+          "color" : "#ffffff",
           "tag" : "Container"
+        }, {
+          "shape" : "WebBrowser",
+          "tag" : "Web Browser"
+        }, {
+          "shape" : "MobileDeviceLandscape",
+          "tag" : "Mobile App"
         }, {
           "shape" : "Cylinder",
           "tag" : "Database"
+        }, {
+          "shape" : "Pipe",
+          "tag" : "Queue"
+        }, {
+          "background" : "#85bbf0",
+          "color" : "#000000",
+          "tag" : "Component"
         } ]
       },
       "terminology" : { }
@@ -106,15 +142,15 @@
         "vertices" : false
       },
       "elements" : [ {
-        "id" : "1",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "3",
+        "id" : "2",
         "x" : 0,
         "y" : 0
       }, {
         "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
         "x" : 0,
         "y" : 0
       } ],
@@ -122,11 +158,11 @@
       "key" : "Diagram2",
       "order" : 2,
       "relationships" : [ {
-        "id" : "5"
+        "id" : "6"
       }, {
-        "id" : "7"
+        "id" : "8"
       } ],
-      "softwareSystemId" : "2"
+      "softwareSystemId" : "3"
     } ],
     "systemContextViews" : [ {
       "automaticLayout" : {
@@ -143,11 +179,11 @@
         "width" : 1550
       },
       "elements" : [ {
-        "id" : "1",
+        "id" : "2",
         "x" : 199,
         "y" : 165
       }, {
-        "id" : "2",
+        "id" : "3",
         "x" : 899,
         "y" : 215
       } ],
@@ -155,9 +191,9 @@
       "key" : "Diagram1",
       "order" : 1,
       "relationships" : [ {
-        "id" : "6"
+        "id" : "7"
       } ],
-      "softwareSystemId" : "2"
+      "softwareSystemId" : "3"
     } ]
   }
 }

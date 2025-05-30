@@ -3,7 +3,8 @@ workspace "Name" "Description" {
     !identifiers hierarchical
 
     model {
-        u = person "User"
+        u = person "P9 Participant users" "External user eligible for screening" "Participant"
+        st = person "Staff users" "Internal staff users including clinical and administrative staff" "NHS Staff"
         ss = softwareSystem "Software System" {
             wa = container "Web Application"
             db = container "Database Schema" {
@@ -11,7 +12,7 @@ workspace "Name" "Description" {
             }
         }
 
-        u -> ss.wa "Uses"
+        st -> ss.wa "Uses"
         ss.wa -> ss.db "Reads from and writes to"
     }
 
@@ -27,21 +28,47 @@ workspace "Name" "Description" {
         }
 
         styles {
-            element "Element" {
-                color #ffffff
-            }
             element "Person" {
-                background #199b65
-                shape person
+                color #ffffff
+                fontSize 22
+                shape Person
+            }
+            element "Participant" {
+                background #686868
+            }
+            element "NHS Staff" {
+                background #08427B
             }
             element "Software System" {
-                background #1eba79
+                background #1168bd
+                color #ffffff
+            }
+            element "External System" {
+                background #686868
+            }
+            element "Existing System" {
+                background #999999
+                color #ffffff
             }
             element "Container" {
-                background #23d98d
+                background #438dd5
+                color #ffffff
+            }
+            element "Web Browser" {
+                shape WebBrowser
+            }
+            element "Mobile App" {
+                shape MobileDeviceLandscape
             }
             element "Database" {
-                shape cylinder
+                shape Cylinder
+            }
+            element "Queue" {
+                shape "Pipe"
+            }
+            element "Component" {
+                background #85bbf0
+                color #000000
             }
         }
     }
