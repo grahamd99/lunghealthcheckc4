@@ -1,22 +1,20 @@
 {
-  "configuration" : {
-    "scope" : "SoftwareSystem"
-  },
+  "configuration" : { },
   "description" : "Description",
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-05-30T14:31:50Z",
+  "lastModifiedDate" : "2025-05-30T15:54:07Z",
   "model" : {
     "people" : [ {
-      "description" : "External user eligible for screening",
+      "description" : "A member of the public who may be eligible for lung health checks",
       "id" : "1",
       "location" : "Unspecified",
-      "name" : "P9 Participant users",
+      "name" : "Participant User",
       "properties" : {
-        "structurizr.dsl.identifier" : "u"
+        "structurizr.dsl.identifier" : "participant"
       },
-      "tags" : "Element,Person,Participant"
+      "tags" : "Element,Person"
     }, {
       "description" : "Internal staff users including clinical and administrative staff",
       "id" : "2",
@@ -26,63 +24,145 @@
         "structurizr.dsl.identifier" : "st"
       },
       "relationships" : [ {
-        "description" : "Uses",
-        "destinationId" : "4",
-        "id" : "6",
+        "description" : "Uses to manage pre-assessment process",
+        "destinationId" : "6",
+        "id" : "18",
         "sourceId" : "2",
         "tags" : "Relationship"
-      }, {
-        "description" : "Uses",
-        "destinationId" : "3",
-        "id" : "7",
-        "linkedRelationshipId" : "6",
-        "sourceId" : "2"
       } ],
       "tags" : "Element,Person,NHS Staff"
     } ],
     "softwareSystems" : [ {
-      "containers" : [ {
-        "documentation" : { },
-        "id" : "4",
-        "name" : "Web Application",
-        "properties" : {
-          "structurizr.dsl.identifier" : "ss.wa"
-        },
-        "relationships" : [ {
-          "description" : "Reads from and writes to",
-          "destinationId" : "5",
-          "id" : "8",
-          "sourceId" : "4",
-          "tags" : "Relationship"
-        } ],
-        "tags" : "Element,Container"
-      }, {
-        "documentation" : { },
-        "id" : "5",
-        "name" : "Database Schema",
-        "properties" : {
-          "structurizr.dsl.identifier" : "ss.db"
-        },
-        "tags" : "Element,Container,Database"
-      } ],
+      "description" : "Logical overview to include all relevant systems",
       "documentation" : { },
       "id" : "3",
       "location" : "Unspecified",
-      "name" : "Software System",
+      "name" : "LHC Overview",
       "properties" : {
-        "structurizr.dsl.identifier" : "ss"
+        "structurizr.dsl.identifier" : "overview"
       },
+      "relationships" : [ {
+        "description" : "Includes",
+        "destinationId" : "4",
+        "id" : "8",
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Includes",
+        "destinationId" : "6",
+        "id" : "9",
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Includes",
+        "destinationId" : "7",
+        "id" : "10",
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Includes",
+        "destinationId" : "1",
+        "id" : "11",
+        "sourceId" : "3",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Holds primary care data for patients",
+      "documentation" : { },
+      "id" : "4",
+      "location" : "Unspecified",
+      "name" : "GP System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "gpsystem"
+      },
+      "relationships" : [ {
+        "description" : "Extracts data from",
+        "destinationId" : "5",
+        "id" : "12",
+        "sourceId" : "4",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Provides raw data to",
+        "destinationId" : "6",
+        "id" : "17",
+        "properties" : {
+          "structurizr.dsl.identifier" : "rawgpdata"
+        },
+        "sourceId" : "4",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Extracts primary care data from GP systems and identifies eligible cohort",
+      "documentation" : { },
+      "id" : "5",
+      "location" : "Unspecified",
+      "name" : "Local Cohorting System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "localcohortingsystem"
+      },
+      "relationships" : [ {
+        "description" : "Provides eligible cohort to",
+        "destinationId" : "6",
+        "id" : "13",
+        "sourceId" : "5",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Processes data from GP system to identify at-risk individuals, manage invitations and support pre-assessment",
+      "documentation" : { },
+      "id" : "6",
+      "location" : "Unspecified",
+      "name" : "Local LHC Preassessment System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "localpreassessmentsystem"
+      },
+      "relationships" : [ {
+        "description" : "Sends communications using",
+        "destinationId" : "7",
+        "id" : "14",
+        "sourceId" : "6",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Selects for invitation based on risk",
+        "destinationId" : "1",
+        "id" : "16",
+        "properties" : {
+          "structurizr.dsl.identifier" : "selection"
+        },
+        "sourceId" : "6",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Delivers communications to patients",
+      "documentation" : { },
+      "id" : "7",
+      "location" : "Unspecified",
+      "name" : "Local Notification System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "localnotificationsystem"
+      },
+      "relationships" : [ {
+        "description" : "Sends invitation to",
+        "destinationId" : "1",
+        "id" : "15",
+        "sourceId" : "7",
+        "tags" : "Relationship"
+      } ],
       "tags" : "Element,Software System"
     } ]
   },
   "name" : "Name",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewogICAgICAgIHUgPSBwZXJzb24gIlA5IFBhcnRpY2lwYW50IHVzZXJzIiAiRXh0ZXJuYWwgdXNlciBlbGlnaWJsZSBmb3Igc2NyZWVuaW5nIiAiUGFydGljaXBhbnQiCiAgICAgICAgc3QgPSBwZXJzb24gIlN0YWZmIHVzZXJzIiAiSW50ZXJuYWwgc3RhZmYgdXNlcnMgaW5jbHVkaW5nIGNsaW5pY2FsIGFuZCBhZG1pbmlzdHJhdGl2ZSBzdGFmZiIgIk5IUyBTdGFmZiIKICAgICAgICBzcyA9IHNvZnR3YXJlU3lzdGVtICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgd2EgPSBjb250YWluZXIgIldlYiBBcHBsaWNhdGlvbiIKICAgICAgICAgICAgZGIgPSBjb250YWluZXIgIkRhdGFiYXNlIFNjaGVtYSIgewogICAgICAgICAgICAgICAgdGFncyAiRGF0YWJhc2UiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIHN0IC0+IHNzLndhICJVc2VzIgogICAgICAgIHNzLndhIC0+IHNzLmRiICJSZWFkcyBmcm9tIGFuZCB3cml0ZXMgdG8iCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHN5c3RlbUNvbnRleHQgc3MgIkRpYWdyYW0xIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgc3MgIkRpYWdyYW0yIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgICAgIGZvbnRTaXplIDIyCiAgICAgICAgICAgICAgICBzaGFwZSBQZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJQYXJ0aWNpcGFudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNjg2ODY4CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTkhTIFN0YWZmIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwODQyN0IKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzExNjhiZAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4dGVybmFsIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNjg2ODY4CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXhpc3RpbmcgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM5OTk5OTkKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzQzOGRkNQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIldlYiBCcm93c2VyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBXZWJCcm93c2VyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTW9iaWxlIEFwcCIgewogICAgICAgICAgICAgICAgc2hhcGUgTW9iaWxlRGV2aWNlTGFuZHNjYXBlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIEN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUXVldWUiIHsKICAgICAgICAgICAgICAgIHNoYXBlICJQaXBlIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjODViYmYwCiAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9CgogICAgY29uZmlndXJhdGlvbiB7CiAgICAgICAgc2NvcGUgc29mdHdhcmVzeXN0ZW0KICAgIH0KCn0="
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgICBtb2RlbCB7CiAgICAgICAgLy8gUGVvcGxlCiAgICAgICAgcGFydGljaXBhbnQgPSBwZXJzb24gIlBhcnRpY2lwYW50IFVzZXIiIHsKICAgICAgICAgICAgZGVzY3JpcHRpb24gIkEgbWVtYmVyIG9mIHRoZSBwdWJsaWMgd2hvIG1heSBiZSBlbGlnaWJsZSBmb3IgbHVuZyBoZWFsdGggY2hlY2tzIgogICAgICAgIH0KICAgICAgICBzdCA9IHBlcnNvbiAiU3RhZmYgdXNlcnMiICJJbnRlcm5hbCBzdGFmZiB1c2VycyBpbmNsdWRpbmcgY2xpbmljYWwgYW5kIGFkbWluaXN0cmF0aXZlIHN0YWZmIiAiTkhTIFN0YWZmIgoKICAgICAgICAvLyBEdW1teSAibmV1dHJhbCIgc3lzdGVtIHRvIHVzZSBhcyBkaWFncmFtIHNjb3BlCiAgICAgICAgb3ZlcnZpZXcgPSBzb2Z0d2FyZVN5c3RlbSAiTEhDIE92ZXJ2aWV3IiB7CiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJMb2dpY2FsIG92ZXJ2aWV3IHRvIGluY2x1ZGUgYWxsIHJlbGV2YW50IHN5c3RlbXMiCiAgICAgICAgfQoKICAgICAgICAvLyBSZWFsIHN5c3RlbXMKICAgICAgICBncFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJHUCBTeXN0ZW0iIHsKICAgICAgICAgICAgZGVzY3JpcHRpb24gIkhvbGRzIHByaW1hcnkgY2FyZSBkYXRhIGZvciBwYXRpZW50cyIKICAgICAgICB9CgogICAgICAgIGxvY2FsQ29ob3J0aW5nU3lzdGVtID0gc29mdHdhcmVTeXN0ZW0gIkxvY2FsIENvaG9ydGluZyBTeXN0ZW0iIHsKICAgICAgICAgICAgZGVzY3JpcHRpb24gIkV4dHJhY3RzIHByaW1hcnkgY2FyZSBkYXRhIGZyb20gR1Agc3lzdGVtcyBhbmQgaWRlbnRpZmllcyBlbGlnaWJsZSBjb2hvcnQiCiAgICAgICAgfQoKICAgICAgICBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gPSBzb2Z0d2FyZVN5c3RlbSAiTG9jYWwgTEhDIFByZWFzc2Vzc21lbnQgU3lzdGVtIiB7CiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJQcm9jZXNzZXMgZGF0YSBmcm9tIEdQIHN5c3RlbSB0byBpZGVudGlmeSBhdC1yaXNrIGluZGl2aWR1YWxzLCBtYW5hZ2UgaW52aXRhdGlvbnMgYW5kIHN1cHBvcnQgcHJlLWFzc2Vzc21lbnQiCiAgICAgICAgfQoKICAgICAgICBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJMb2NhbCBOb3RpZmljYXRpb24gU3lzdGVtIiB7CiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJEZWxpdmVycyBjb21tdW5pY2F0aW9ucyB0byBwYXRpZW50cyIKICAgICAgICB9CgogICAgICAgIC8vIENvbm5lY3QgdGhlIG92ZXJ2aWV3IHN5c3RlbSB0byBhbGwgb3RoZXJzIChkdW1teSByZWxhdGlvbnNoaXBzIGp1c3QgdG8gbWFrZSB0aGVtIGFwcGVhcikKICAgICAgICBvdmVydmlldyAtPiBncFN5c3RlbSAiSW5jbHVkZXMiCiAgICAgICAgb3ZlcnZpZXcgLT4gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtICJJbmNsdWRlcyIKICAgICAgICBvdmVydmlldyAtPiBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSAiSW5jbHVkZXMiCiAgICAgICAgb3ZlcnZpZXcgLT4gcGFydGljaXBhbnQgIkluY2x1ZGVzIgoKICAgICAgICAvLyBSZWFsIHJlbGF0aW9uc2hpcHMKICAgICAgICBncFN5c3RlbSAtPiBsb2NhbENvaG9ydGluZ1N5c3RlbSAiRXh0cmFjdHMgZGF0YSBmcm9tIgogICAgICAgIGxvY2FsQ29ob3J0aW5nU3lzdGVtIC0+IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAiUHJvdmlkZXMgZWxpZ2libGUgY29ob3J0IHRvIgogICAgICAgIGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAtPiBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSAiU2VuZHMgY29tbXVuaWNhdGlvbnMgdXNpbmciCiAgICAgICAgbG9jYWxOb3RpZmljYXRpb25TeXN0ZW0gLT4gcGFydGljaXBhbnQgIlNlbmRzIGludml0YXRpb24gdG8iCiAgICAgICAgc2VsZWN0aW9uID0gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtIC0+IHBhcnRpY2lwYW50ICJTZWxlY3RzIGZvciBpbnZpdGF0aW9uIGJhc2VkIG9uIHJpc2siIAogICAgICAgIHJhd0dwRGF0YSA9IGdwU3lzdGVtIC0+IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAiUHJvdmlkZXMgcmF3IGRhdGEgdG8iCiAgICAgICAgc3QgLT4gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtICJVc2VzIHRvIG1hbmFnZSBwcmUtYXNzZXNzbWVudCBwcm9jZXNzIgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBzeXN0ZW1Db250ZXh0IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBleGNsdWRlIHNlbGVjdGlvbgogICAgICAgICAgICBleGNsdWRlIHJhd0dwRGF0YQogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgICAgIHRpdGxlICJMb2NhbCBMSEMgUHJlYXNzZXNzbWVudCBTeXN0ZW0gQ29udGV4dCDigJMgRnVsbCBWaWV3IgogICAgICAgICAgICBkZXNjcmlwdGlvbiAiQWxsIHN5c3RlbXMgYW5kIHVzZXIgaW50ZXJhY3Rpb25zIGludm9sdmVkIGluIFRhcmdldGVkIEx1bmcgSGVhbHRoIENoZWNrIgogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiUGVyc29uIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgICAgICBmb250U2l6ZSAyMgogICAgICAgICAgICAgICAgc2hhcGUgUGVyc29uCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUGFydGljaXBhbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzY4Njg2OAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIk5IUyBTdGFmZiIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDg0MjdCCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJFeHRlcm5hbCBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzY4Njg2OAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4aXN0aW5nIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM0MzhkZDUKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJXZWIgQnJvd3NlciIgewogICAgICAgICAgICAgICAgc2hhcGUgV2ViQnJvd3NlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIk1vYmlsZSBBcHAiIHsKICAgICAgICAgICAgICAgIHNoYXBlIE1vYmlsZURldmljZUxhbmRzY2FwZQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBDeWxpbmRlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlF1ZXVlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSAiUGlwZSIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb21wb25lbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzg1YmJmMAogICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICB9CiAgICB9Cn0="
   },
   "views" : {
     "configuration" : {
       "branding" : { },
-      "lastSavedView" : "Diagram1",
+      "lastSavedView" : "SystemContext-001",
       "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
@@ -131,39 +211,6 @@
       },
       "terminology" : { }
     },
-    "containerViews" : [ {
-      "automaticLayout" : {
-        "applied" : false,
-        "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
-        "nodeSeparation" : 300,
-        "rankDirection" : "LeftRight",
-        "rankSeparation" : 300,
-        "vertices" : false
-      },
-      "elements" : [ {
-        "id" : "2",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "4",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "5",
-        "x" : 0,
-        "y" : 0
-      } ],
-      "externalSoftwareSystemBoundariesVisible" : false,
-      "key" : "Diagram2",
-      "order" : 2,
-      "relationships" : [ {
-        "id" : "6"
-      }, {
-        "id" : "8"
-      } ],
-      "softwareSystemId" : "3"
-    } ],
     "systemContextViews" : [ {
       "automaticLayout" : {
         "applied" : true,
@@ -174,26 +221,82 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
+      "description" : "All systems and user interactions involved in Targeted Lung Health Check",
       "dimensions" : {
-        "height" : 800,
-        "width" : 1550
+        "height" : 2647,
+        "width" : 4550
       },
       "elements" : [ {
+        "id" : "1",
+        "x" : 3949,
+        "y" : 572
+      }, {
         "id" : "2",
-        "x" : 199,
-        "y" : 165
+        "x" : 1724,
+        "y" : 1831
       }, {
         "id" : "3",
-        "x" : 899,
-        "y" : 215
+        "x" : 199,
+        "y" : 927
+      }, {
+        "id" : "4",
+        "x" : 949,
+        "y" : 622
+      }, {
+        "id" : "5",
+        "x" : 1699,
+        "y" : 622
+      }, {
+        "id" : "6",
+        "x" : 2449,
+        "y" : 1227
+      }, {
+        "id" : "7",
+        "x" : 3199,
+        "y" : 1227
       } ],
       "enterpriseBoundaryVisible" : true,
-      "key" : "Diagram1",
+      "generatedKey" : true,
+      "key" : "SystemContext-001",
       "order" : 1,
       "relationships" : [ {
-        "id" : "7"
+        "id" : "10",
+        "vertices" : [ {
+          "x" : 1699,
+          "y" : 2381
+        }, {
+          "x" : 2149,
+          "y" : 2381
+        } ]
+      }, {
+        "id" : "11",
+        "vertices" : [ {
+          "x" : 949,
+          "y" : 472
+        }, {
+          "x" : 1920,
+          "y" : 168
+        }, {
+          "x" : 2678,
+          "y" : 168
+        } ]
+      }, {
+        "id" : "12"
+      }, {
+        "id" : "13"
+      }, {
+        "id" : "14"
+      }, {
+        "id" : "15"
+      }, {
+        "id" : "18"
+      }, {
+        "id" : "8"
+      }, {
+        "id" : "9"
       } ],
-      "softwareSystemId" : "3"
+      "softwareSystemId" : "6",
+      "title" : "Local LHC Preassessment System Context – Full View"
     } ]
   }
 }

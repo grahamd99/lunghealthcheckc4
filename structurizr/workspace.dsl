@@ -1,30 +1,58 @@
-workspace "Name" "Description" {
-
-    !identifiers hierarchical
+workspace {
 
     model {
-        u = person "P9 Participant users" "External user eligible for screening" "Participant"
+        // People
+        participant = person "Participant User" {
+            description "A member of the public who may be eligible for lung health checks"
+        }
         st = person "Staff users" "Internal staff users including clinical and administrative staff" "NHS Staff"
-        ss = softwareSystem "Software System" {
-            wa = container "Web Application"
-            db = container "Database Schema" {
-                tags "Database"
-            }
+
+        // Dummy "neutral" system to use as diagram scope
+        overview = softwareSystem "LHC Overview" {
+            description "Logical overview to include all relevant systems"
         }
 
-        st -> ss.wa "Uses"
-        ss.wa -> ss.db "Reads from and writes to"
+        // Real systems
+        gpSystem = softwareSystem "GP System" {
+            description "Holds primary care data for patients"
+        }
+
+        localCohortingSystem = softwareSystem "Local Cohorting System" {
+            description "Extracts primary care data from GP systems and identifies eligible cohort"
+        }
+
+        localPreAssessmentSystem = softwareSystem "Local LHC Preassessment System" {
+            description "Processes data from GP system to identify at-risk individuals, manage invitations and support pre-assessment"
+        }
+
+        localNotificationSystem = softwareSystem "Local Notification System" {
+            description "Delivers communications to patients"
+        }
+
+        // Connect the overview system to all others (dummy relationships just to make them appear)
+        overview -> gpSystem "Includes"
+        overview -> localPreAssessmentSystem "Includes"
+        overview -> localNotificationSystem "Includes"
+        overview -> participant "Includes"
+
+        // Real relationships
+        gpSystem -> localCohortingSystem "Extracts data from"
+        localCohortingSystem -> localPreAssessmentSystem "Provides eligible cohort to"
+        localPreAssessmentSystem -> localNotificationSystem "Sends communications using"
+        localNotificationSystem -> participant "Sends invitation to"
+        selection = localPreAssessmentSystem -> participant "Selects for invitation based on risk" 
+        rawGpData = gpSystem -> localPreAssessmentSystem "Provides raw data to"
+        st -> localPreAssessmentSystem "Uses to manage pre-assessment process"
     }
 
     views {
-        systemContext ss "Diagram1" {
+        systemContext localPreAssessmentSystem {
             include *
+            exclude selection
+            exclude rawGpData
             autolayout lr
-        }
-
-        container ss "Diagram2" {
-            include *
-            autolayout lr
+            title "Local LHC Preassessment System Context – Full View"
+            description "All systems and user interactions involved in Targeted Lung Health Check"
         }
 
         styles {
@@ -70,11 +98,6 @@ workspace "Name" "Description" {
                 background #85bbf0
                 color #000000
             }
-        }
+          }
     }
-
-    configuration {
-        scope softwaresystem
-    }
-
 }
