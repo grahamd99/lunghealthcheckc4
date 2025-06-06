@@ -1,53 +1,103 @@
-workspace "Name" "Description" {
-
-    !identifiers hierarchical
+workspace {
 
     model {
-        u = person "User"
-        ss = softwareSystem "Software System" {
-            wa = container "Web Application"
-            db = container "Database Schema" {
-                tags "Database"
-            }
+        // People
+        participant = person "Participant User" {
+            description "A member of the public who may be eligible for lung health checks"
+        }
+        st = person "Staff users" "Internal staff users including clinical and administrative staff" "NHS Staff"
+
+        // Dummy "neutral" system to use as diagram scope
+        overview = softwareSystem "LHC Overview" {
+            description "Logical overview to include all relevant systems"
         }
 
-        u -> ss.wa "Uses"
-        ss.wa -> ss.db "Reads from and writes to"
+        // Real systems
+        gpSystem = softwareSystem "GP System" {
+            description "Holds primary care data for patients"
+        }
+
+        localCohortingSystem = softwareSystem "Local Cohorting System" {
+            description "Extracts primary care data from GP systems and identifies eligible cohort"
+        }
+
+        localPreAssessmentSystem = softwareSystem "Local LHC Preassessment System" {
+            description "Processes data from GP system to identify at-risk individuals, manage invitations and support pre-assessment"
+        }
+
+        localNotificationSystem = softwareSystem "Local Notification System" {
+            description "Delivers communications to patients"
+        }
+
+        // Connect the overview system to all others (dummy relationships just to make them appear)
+        overview -> gpSystem "Includes"
+        overview -> localPreAssessmentSystem "Includes"
+        overview -> localNotificationSystem "Includes"
+        overview -> participant "Includes"
+
+        // Real relationships
+        gpSystem -> localCohortingSystem "Extracts data from"
+        localCohortingSystem -> localPreAssessmentSystem "Provides eligible cohort to"
+        localPreAssessmentSystem -> localNotificationSystem "Sends communications using"
+        localNotificationSystem -> participant "Sends invitation to"
+        selection = localPreAssessmentSystem -> participant "Selects for invitation based on risk" 
+        rawGpData = gpSystem -> localPreAssessmentSystem "Provides raw data to"
+        st -> localPreAssessmentSystem "Uses to manage pre-assessment process"
     }
 
     views {
-        systemContext ss "Diagram1" {
+        systemContext localPreAssessmentSystem {
             include *
+            exclude selection
+            exclude rawGpData
             autolayout lr
-        }
-
-        container ss "Diagram2" {
-            include *
-            autolayout lr
+            title "Local LHC Preassessment System Context – Full View"
+            description "All systems and user interactions involved in Targeted Lung Health Check"
         }
 
         styles {
-            element "Element" {
-                color #ffffff
-            }
             element "Person" {
-                background #199b65
-                shape person
+                color #ffffff
+                fontSize 22
+                shape Person
+            }
+            element "Participant" {
+                background #686868
+            }
+            element "NHS Staff" {
+                background #08427B
             }
             element "Software System" {
-                background #1eba79
+                background #1168bd
+                color #ffffff
+            }
+            element "External System" {
+                background #686868
+            }
+            element "Existing System" {
+                background #999999
+                color #ffffff
             }
             element "Container" {
-                background #23d98d
+                background #438dd5
+                color #ffffff
+            }
+            element "Web Browser" {
+                shape WebBrowser
+            }
+            element "Mobile App" {
+                shape MobileDeviceLandscape
             }
             element "Database" {
-                shape cylinder
+                shape Cylinder
             }
-        }
+            element "Queue" {
+                shape "Pipe"
+            }
+            element "Component" {
+                background #85bbf0
+                color #000000
+            }
+          }
     }
-
-    configuration {
-        scope softwaresystem
-    }
-
 }
