@@ -18,7 +18,7 @@ workspace {
         }
 
         localCohortingSystem = softwareSystem "Local Cohorting System" {
-            description "Extracts primary care data from GP systems and identifies eligible cohort"
+            description "Extracts primary care data from GP systems and identifies initial eligible cohort"
         }
 
         localPreAssessmentSystem = softwareSystem "Local LHC Preassessment System" {
@@ -26,23 +26,24 @@ workspace {
         }
 
         localNotificationSystem = softwareSystem "Local Notification System" {
-            description "Delivers communications to patients"
+            description "Delivers communications (letters only) to patients"
         }
 
         // Connect the overview system to all others (dummy relationships just to make them appear)
-        overview -> gpSystem "Includes"
-        overview -> localPreAssessmentSystem "Includes"
-        overview -> localNotificationSystem "Includes"
-        overview -> participant "Includes"
+        // overview -> gpSystem "Includes"
+        // overview -> localPreAssessmentSystem "Includes"
+       // overview -> localNotificationSystem "Includes"
+       // overview -> participant "Includes"
 
         // Real relationships
         gpSystem -> localCohortingSystem "Extracts data from"
-        localCohortingSystem -> localPreAssessmentSystem "Provides eligible cohort to"
+        localCohortingSystem -> localPreAssessmentSystem "Provides initial eligible cohort to"
         localPreAssessmentSystem -> localNotificationSystem "Sends communications using"
-        localNotificationSystem -> participant "Sends invitation to"
+        localNotificationSystem -> participant "Sends communications to"
         selection = localPreAssessmentSystem -> participant "Selects for invitation based on risk" 
         rawGpData = gpSystem -> localPreAssessmentSystem "Provides raw data to"
-        st -> localPreAssessmentSystem "Uses to manage pre-assessment process"
+        st -> localPreAssessmentSystem "Uses to manage pre-assessment & referral process"
+        st -> participant "Asks pre-assessment questions to"
     }
 
     views {
