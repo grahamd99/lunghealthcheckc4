@@ -1,0 +1,382 @@
+{
+  "configuration" : { },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedAgent" : "structurizr-ui",
+  "lastModifiedDate" : "2025-09-08T15:44:46Z",
+  "model" : {
+    "people" : [ {
+      "description" : "A member of the public who is eligible for lung cancer risk check",
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "Participant User",
+      "properties" : {
+        "structurizr.dsl.identifier" : "participant"
+      },
+      "relationships" : [ {
+        "description" : "Completes Pilot Digital Lung Cancer Risk journey with",
+        "destinationId" : "8",
+        "id" : "21",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person,Participant"
+    }, {
+      "description" : "Internal staff users including clinical and administrative staff",
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "Lung Cancer Screening Provider Staff users",
+      "properties" : {
+        "structurizr.dsl.identifier" : "st"
+      },
+      "relationships" : [ {
+        "description" : "Uses to manage Pilot digital app consent, telephone lung cancer risk check, CT appointment booking & referral process",
+        "destinationId" : "6",
+        "id" : "18",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Runs Pilot digital app consent journey & telephone lung risk check journey with",
+        "destinationId" : "1",
+        "id" : "19",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person,Lung Cancer Screening Provider Staff"
+    } ],
+    "softwareSystems" : [ {
+      "description" : "Logical overview to include all relevant systems",
+      "documentation" : { },
+      "id" : "3",
+      "location" : "Unspecified",
+      "name" : "LHC Overview",
+      "properties" : {
+        "structurizr.dsl.identifier" : "overview"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Holds primary care data for patients",
+      "documentation" : { },
+      "id" : "4",
+      "location" : "Unspecified",
+      "name" : "GP System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "gpsystem"
+      },
+      "relationships" : [ {
+        "description" : "Provides GP patient record data to",
+        "destinationId" : "5",
+        "id" : "12",
+        "sourceId" : "4",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Provides raw data to",
+        "destinationId" : "6",
+        "id" : "17",
+        "properties" : {
+          "structurizr.dsl.identifier" : "rawgpdata"
+        },
+        "sourceId" : "4",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Extracts primary care data from GP systems and identifies initial eligible cohort",
+      "documentation" : { },
+      "id" : "5",
+      "location" : "Unspecified",
+      "name" : "Local Cohorting System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "localcohortingsystem"
+      },
+      "relationships" : [ {
+        "description" : "Provides lung screening initial eligible cohort data (LUNGDF100) to",
+        "destinationId" : "6",
+        "id" : "13",
+        "sourceId" : "5",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Processes data from GP system to identify at-risk individuals, manage invitations, support lung cancer risk check, CT appointment booking & referral",
+      "documentation" : { },
+      "id" : "6",
+      "location" : "Unspecified",
+      "name" : "Local LHC Preassessment System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "localpreassessmentsystem"
+      },
+      "relationships" : [ {
+        "description" : "Sends communications using",
+        "destinationId" : "7",
+        "id" : "14",
+        "sourceId" : "6",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Selects for invitation based on risk",
+        "destinationId" : "1",
+        "id" : "16",
+        "properties" : {
+          "structurizr.dsl.identifier" : "selection"
+        },
+        "sourceId" : "6",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Provides Pilot ID (LUNGDF200) and telephone lung cancer risk check info (LUNGDF400) to",
+        "destinationId" : "8",
+        "id" : "20",
+        "sourceId" : "6",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System,External System"
+    }, {
+      "description" : "Delivers communications (letters only) to participants",
+      "documentation" : { },
+      "id" : "7",
+      "location" : "Unspecified",
+      "name" : "Local Notification System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "localnotificationsystem"
+      },
+      "relationships" : [ {
+        "description" : "Sends communications to",
+        "destinationId" : "1",
+        "id" : "15",
+        "sourceId" : "7",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System,External System"
+    }, {
+      "containers" : [ {
+        "description" : "Software System",
+        "documentation" : { },
+        "id" : "9",
+        "name" : "Pilot Digital Lung Cancer Risk App",
+        "properties" : {
+          "structurizr.dsl.identifier" : "digitallungcancerriskapp"
+        },
+        "relationships" : [ {
+          "description" : "Reads and writes Participant data to",
+          "destinationId" : "11",
+          "id" : "24",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Software System",
+        "documentation" : { },
+        "id" : "10",
+        "name" : "Pilot Digital Lung Cancer Risk GUI",
+        "properties" : {
+          "structurizr.dsl.identifier" : "digitallungcancerriskgui"
+        },
+        "relationships" : [ {
+          "description" : "Provides Participant facing GUI interface to",
+          "destinationId" : "9",
+          "id" : "23",
+          "sourceId" : "10",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Anonymous digital app & telephone journey lung cancer risk scores & ratings",
+        "documentation" : { },
+        "id" : "11",
+        "name" : "Pilot Digital Lung Cancer Risk Anonymous Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "digitallungcancerriskdb"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "Pilot Digital Lung Cancer Risk Anonymous Database"
+      } ],
+      "description" : "Software System",
+      "documentation" : { },
+      "id" : "8",
+      "location" : "Unspecified",
+      "name" : "Pilot Digital Lung Cancer Risk System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "digitallungcancerrisksystem"
+      },
+      "relationships" : [ {
+        "description" : "Provides Pilot ID digital journey completion info (LUNGDF300) to",
+        "destinationId" : "6",
+        "id" : "22",
+        "sourceId" : "8",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Name",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgICBtb2RlbCB7CiAgICAgICAgLy8gUGVvcGxlCiAgICAgICAgcGFydGljaXBhbnQgPSBwZXJzb24gIlBhcnRpY2lwYW50IFVzZXIiICJBIG1lbWJlciBvZiB0aGUgcHVibGljIHdobyBpcyBlbGlnaWJsZSBmb3IgbHVuZyBjYW5jZXIgcmlzayBjaGVjayIgIlBhcnRpY2lwYW50IgogICAgICAgIHN0ID0gcGVyc29uICJMdW5nIENhbmNlciBTY3JlZW5pbmcgUHJvdmlkZXIgU3RhZmYgdXNlcnMiICJJbnRlcm5hbCBzdGFmZiB1c2VycyBpbmNsdWRpbmcgY2xpbmljYWwgYW5kIGFkbWluaXN0cmF0aXZlIHN0YWZmIiAiTHVuZyBDYW5jZXIgU2NyZWVuaW5nIFByb3ZpZGVyIFN0YWZmIgoKICAgICAgICAvLyBEdW1teSAibmV1dHJhbCIgc3lzdGVtIHRvIHVzZSBhcyBkaWFncmFtIHNjb3BlCiAgICAgICAgb3ZlcnZpZXcgPSBzb2Z0d2FyZVN5c3RlbSAiTEhDIE92ZXJ2aWV3IiB7CiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJMb2dpY2FsIG92ZXJ2aWV3IHRvIGluY2x1ZGUgYWxsIHJlbGV2YW50IHN5c3RlbXMiCiAgICAgICAgfQoKICAgICAgICAvLyBSZWFsIHN5c3RlbXMKICAgICAgICBncFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJHUCBTeXN0ZW0iICJIb2xkcyBwcmltYXJ5IGNhcmUgZGF0YSBmb3IgcGF0aWVudHMiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGxvY2FsQ29ob3J0aW5nU3lzdGVtID0gc29mdHdhcmVTeXN0ZW0gIkxvY2FsIENvaG9ydGluZyBTeXN0ZW0iICJFeHRyYWN0cyBwcmltYXJ5IGNhcmUgZGF0YSBmcm9tIEdQIHN5c3RlbXMgYW5kIGlkZW50aWZpZXMgaW5pdGlhbCBlbGlnaWJsZSBjb2hvcnQiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJMb2NhbCBMSEMgUHJlYXNzZXNzbWVudCBTeXN0ZW0iICJQcm9jZXNzZXMgZGF0YSBmcm9tIEdQIHN5c3RlbSB0byBpZGVudGlmeSBhdC1yaXNrIGluZGl2aWR1YWxzLCBtYW5hZ2UgaW52aXRhdGlvbnMsIHN1cHBvcnQgbHVuZyBjYW5jZXIgcmlzayBjaGVjaywgQ1QgYXBwb2ludG1lbnQgYm9va2luZyAmIHJlZmVycmFsIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJMb2NhbCBOb3RpZmljYXRpb24gU3lzdGVtIiAiRGVsaXZlcnMgY29tbXVuaWNhdGlvbnMgKGxldHRlcnMgb25seSkgdG8gcGFydGljaXBhbnRzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIAogICAgICAgIGRpZ2l0YWxMdW5nQ2FuY2VyUmlza1N5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJQaWxvdCBEaWdpdGFsIEx1bmcgQ2FuY2VyIFJpc2sgU3lzdGVtIiAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tBcHAgPSBjb250YWluZXIgIlBpbG90IERpZ2l0YWwgTHVuZyBDYW5jZXIgUmlzayBBcHAiICJTb2Z0d2FyZSBTeXN0ZW0iCiAgICAgICAgICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tHVUkgPSBjb250YWluZXIgIlBpbG90IERpZ2l0YWwgTHVuZyBDYW5jZXIgUmlzayBHVUkiICJTb2Z0d2FyZSBTeXN0ZW0iCiAgICAgICAgICAgICAgICAvL2RpZ2l0YWxMdW5nQ2FuY2VyUmlza0RCID0gY29udGFpbmVyICJQaWxvdCBEaWdpdGFsIEx1bmcgQ2FuY2VyIFJpc2sgQW5vbnltb3VzIERhdGFiYXNlIiAiRGF0YWJhc2UiCiAgICAgICAgICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tEQiA9IGNvbnRhaW5lciAiUGlsb3QgRGlnaXRhbCBMdW5nIENhbmNlciBSaXNrIEFub255bW91cyBEYXRhYmFzZSIgIkFub255bW91cyBkaWdpdGFsIGFwcCAmIHRlbGVwaG9uZSBqb3VybmV5IGx1bmcgY2FuY2VyIHJpc2sgc2NvcmVzICYgcmF0aW5ncyIgIlBpbG90IERpZ2l0YWwgTHVuZyBDYW5jZXIgUmlzayBBbm9ueW1vdXMgRGF0YWJhc2UiICJEYXRhYmFzZSIKICAgICAgICB9CgogICAgICAgIC8vIENvbm5lY3QgdGhlIG92ZXJ2aWV3IHN5c3RlbSB0byBhbGwgb3RoZXJzIChkdW1teSByZWxhdGlvbnNoaXBzIGp1c3QgdG8gbWFrZSB0aGVtIGFwcGVhcikKICAgICAgICAvLyBvdmVydmlldyAtPiBncFN5c3RlbSAiSW5jbHVkZXMiCiAgICAgICAgLy8gb3ZlcnZpZXcgLT4gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtICJJbmNsdWRlcyIKICAgICAgIC8vIG92ZXJ2aWV3IC0+IGxvY2FsTm90aWZpY2F0aW9uU3lzdGVtICJJbmNsdWRlcyIKICAgICAgIC8vIG92ZXJ2aWV3IC0+IHBhcnRpY2lwYW50ICJJbmNsdWRlcyIKCiAgICAgICAgLy8gUmVhbCByZWxhdGlvbnNoaXBzCiAgICAgICAgZ3BTeXN0ZW0gLT4gbG9jYWxDb2hvcnRpbmdTeXN0ZW0gIlByb3ZpZGVzIEdQIHBhdGllbnQgcmVjb3JkIGRhdGEgdG8iCiAgICAgICAgbG9jYWxDb2hvcnRpbmdTeXN0ZW0gLT4gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtICJQcm92aWRlcyBsdW5nIHNjcmVlbmluZyBpbml0aWFsIGVsaWdpYmxlIGNvaG9ydCBkYXRhIChMVU5HREYxMDApIHRvIgogICAgICAgIGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAtPiBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSAiU2VuZHMgY29tbXVuaWNhdGlvbnMgdXNpbmciCiAgICAgICAgbG9jYWxOb3RpZmljYXRpb25TeXN0ZW0gLT4gcGFydGljaXBhbnQgIlNlbmRzIGNvbW11bmljYXRpb25zIHRvIgogICAgICAgIHNlbGVjdGlvbiA9IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAtPiBwYXJ0aWNpcGFudCAiU2VsZWN0cyBmb3IgaW52aXRhdGlvbiBiYXNlZCBvbiByaXNrIiAKICAgICAgICByYXdHcERhdGEgPSBncFN5c3RlbSAtPiBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gIlByb3ZpZGVzIHJhdyBkYXRhIHRvIgogICAgICAgIHN0IC0+IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAiVXNlcyB0byBtYW5hZ2UgUGlsb3QgZGlnaXRhbCBhcHAgY29uc2VudCwgdGVsZXBob25lIGx1bmcgY2FuY2VyIHJpc2sgY2hlY2ssIENUIGFwcG9pbnRtZW50IGJvb2tpbmcgJiByZWZlcnJhbCBwcm9jZXNzIgogICAgICAgIHN0IC0+IHBhcnRpY2lwYW50ICJSdW5zIFBpbG90IGRpZ2l0YWwgYXBwIGNvbnNlbnQgam91cm5leSAmIHRlbGVwaG9uZSBsdW5nIHJpc2sgY2hlY2sgam91cm5leSB3aXRoIiAKCiAgICAgICAgbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtIC0+IGRpZ2l0YWxMdW5nQ2FuY2VyUmlza1N5c3RlbSAiUHJvdmlkZXMgUGlsb3QgSUQgKExVTkdERjIwMCkgYW5kIHRlbGVwaG9uZSBsdW5nIGNhbmNlciByaXNrIGNoZWNrIGluZm8gKExVTkdERjQwMCkgdG8iCiAgICAgICAgcGFydGljaXBhbnQgLT4gZGlnaXRhbEx1bmdDYW5jZXJSaXNrU3lzdGVtICJDb21wbGV0ZXMgUGlsb3QgRGlnaXRhbCBMdW5nIENhbmNlciBSaXNrIGpvdXJuZXkgd2l0aCIKICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tTeXN0ZW0gLT4gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtICJQcm92aWRlcyBQaWxvdCBJRCBkaWdpdGFsIGpvdXJuZXkgY29tcGxldGlvbiBpbmZvIChMVU5HREYzMDApIHRvIgoKICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tHVUkgLT4gZGlnaXRhbEx1bmdDYW5jZXJSaXNrQXBwICJQcm92aWRlcyBQYXJ0aWNpcGFudCBmYWNpbmcgR1VJIGludGVyZmFjZSB0byIKICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tBcHAgLT4gZGlnaXRhbEx1bmdDYW5jZXJSaXNrREIgIlJlYWRzIGFuZCB3cml0ZXMgUGFydGljaXBhbnQgZGF0YSB0byIKICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgc3lzdGVtQ29udGV4dCBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgZXhjbHVkZSBzZWxlY3Rpb24KICAgICAgICAgICAgZXhjbHVkZSByYXdHcERhdGEKICAgICAgICAgICAgLy8gYXV0b2xheW91dCBscgogICAgICAgICAgICB0aXRsZSAiTHVuZyBDYW5jZXIgUmlzayBDaGVjayBTeXN0ZW0gQ29udGV4dCDigJMgRnVsbCBWaWV3IChQaWxvdCBzdGF0ZSkiCiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJBbGwgc3lzdGVtcyBhbmQgdXNlciBpbnRlcmFjdGlvbnMgaW52b2x2ZWQgaW4gTHVuZyBDYW5jZXIgUmlzayBDaGVjayBzdGFnZSBvZiBMdW5nIENhbmNlciBTY3JlZW5pbmcgKFBpbG90KSIKICAgICAgICB9CgogICAgICAgIGNvbnRhaW5lciBkaWdpdGFsTHVuZ0NhbmNlclJpc2tTeXN0ZW0gIkNvbnRhaW5lcnMiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGFuaW1hdGlvbiB7CiAgICAgICAgICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tHVUkgZGlnaXRhbEx1bmdDYW5jZXJSaXNrQXBwIGRpZ2l0YWxMdW5nQ2FuY2VyUmlza0RCCiAgICAgICAgICAgIH0KICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgICAgICBkZXNjcmlwdGlvbiAiVGhlIGNvbnRhaW5lciBkaWFncmFtIGZvciB0aGUgUGlsb3QgTHVuZyBDYW5jZXIgUmlzayBBc3Nlc3NtZW50IERpZ2l0YWwgQXBwIgogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiUGVyc29uIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgICAgICBmb250U2l6ZSAyMgogICAgICAgICAgICAgICAgc2hhcGUgUGVyc29uCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUGFydGljaXBhbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzY4Njg2OAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkx1bmcgQ2FuY2VyIFNjcmVlbmluZyBQcm92aWRlciBTdGFmZiIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDg0MjdCCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJFeHRlcm5hbCBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzY4Njg2OAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4aXN0aW5nIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM0MzhkZDUKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJXZWIgQnJvd3NlciIgewogICAgICAgICAgICAgICAgc2hhcGUgV2ViQnJvd3NlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIk1vYmlsZSBBcHAiIHsKICAgICAgICAgICAgICAgIHNoYXBlIE1vYmlsZURldmljZUxhbmRzY2FwZQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkRhdGFiYXNlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBDeWxpbmRlcgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlF1ZXVlIiB7CiAgICAgICAgICAgICAgICBzaGFwZSAiUGlwZSIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb21wb25lbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzg1YmJmMAogICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICB9CiAgICB9Cn0="
+  },
+  "views" : {
+    "configuration" : {
+      "branding" : { },
+      "lastSavedView" : "Containers",
+      "metadataSymbols" : "SquareBrackets",
+      "styles" : {
+        "elements" : [ {
+          "color" : "#ffffff",
+          "fontSize" : 22,
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#686868",
+          "tag" : "Participant"
+        }, {
+          "background" : "#08427b",
+          "tag" : "Lung Cancer Screening Provider Staff"
+        }, {
+          "background" : "#1168bd",
+          "color" : "#ffffff",
+          "tag" : "Software System"
+        }, {
+          "background" : "#686868",
+          "tag" : "External System"
+        }, {
+          "background" : "#999999",
+          "color" : "#ffffff",
+          "tag" : "Existing System"
+        }, {
+          "background" : "#438dd5",
+          "color" : "#ffffff",
+          "tag" : "Container"
+        }, {
+          "shape" : "WebBrowser",
+          "tag" : "Web Browser"
+        }, {
+          "shape" : "MobileDeviceLandscape",
+          "tag" : "Mobile App"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "shape" : "Pipe",
+          "tag" : "Queue"
+        }, {
+          "background" : "#85bbf0",
+          "color" : "#000000",
+          "tag" : "Component"
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "animations" : [ {
+        "elements" : [ "10", "11", "9" ],
+        "order" : 1,
+        "relationships" : [ "23", "24" ]
+      } ],
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "description" : "The container diagram for the Pilot Lung Cancer Risk Assessment Digital App",
+      "dimensions" : {
+        "height" : 811,
+        "width" : 2390
+      },
+      "elements" : [ {
+        "id" : "9",
+        "x" : 969,
+        "y" : 171
+      }, {
+        "id" : "10",
+        "x" : 219,
+        "y" : 171
+      }, {
+        "id" : "11",
+        "x" : 1719,
+        "y" : 171
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "Containers",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "23"
+      }, {
+        "id" : "24"
+      } ],
+      "softwareSystemId" : "8"
+    } ],
+    "systemContextViews" : [ {
+      "description" : "All systems and user interactions involved in Lung Cancer Risk Check stage of Lung Cancer Screening (Pilot)",
+      "dimensions" : {
+        "height" : 2225,
+        "width" : 3816
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 3100,
+        "y" : 25
+      }, {
+        "id" : "2",
+        "x" : 785,
+        "y" : 30
+      }, {
+        "id" : "4",
+        "x" : 295,
+        "y" : 1195
+      }, {
+        "id" : "5",
+        "x" : 1130,
+        "y" : 1210
+      }, {
+        "id" : "6",
+        "x" : 2020,
+        "y" : 1220
+      }, {
+        "id" : "7",
+        "x" : 3100,
+        "y" : 1205
+      }, {
+        "id" : "8",
+        "x" : 2150,
+        "y" : 450
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemContext-001",
+      "order" : 1,
+      "paperSize" : "A3_Landscape",
+      "relationships" : [ {
+        "id" : "12"
+      }, {
+        "id" : "13"
+      }, {
+        "id" : "14"
+      }, {
+        "id" : "15"
+      }, {
+        "id" : "18"
+      }, {
+        "id" : "19"
+      }, {
+        "id" : "20",
+        "vertices" : [ {
+          "x" : 2080,
+          "y" : 910
+        } ]
+      }, {
+        "id" : "21"
+      }, {
+        "id" : "22",
+        "vertices" : [ {
+          "x" : 2550,
+          "y" : 910
+        } ]
+      } ],
+      "softwareSystemId" : "6",
+      "title" : "Lung Cancer Risk Check System Context – Full View (Pilot state)"
+    } ]
+  }
+}
