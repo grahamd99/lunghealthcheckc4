@@ -4,7 +4,7 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-09-08T14:25:24Z",
+  "lastModifiedDate" : "2025-09-08T15:32:34Z",
   "model" : {
     "people" : [ {
       "description" : "A member of the public who is eligible for lung cancer risk check",
@@ -14,6 +14,13 @@
       "properties" : {
         "structurizr.dsl.identifier" : "participant"
       },
+      "relationships" : [ {
+        "description" : "Completes Pilot Digital Lung Cancer Risk journey with",
+        "destinationId" : "8",
+        "id" : "21",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      } ],
       "tags" : "Element,Person,Participant"
     }, {
       "description" : "Internal staff users including clinical and administrative staff",
@@ -24,15 +31,15 @@
         "structurizr.dsl.identifier" : "st"
       },
       "relationships" : [ {
-        "description" : "Uses to manage telephone lung cancer risk check, CT appointment booking & referral process",
+        "description" : "Uses to manage Pilot digital app consent, telephone lung cancer risk check, CT appointment booking & referral process",
         "destinationId" : "6",
-        "id" : "14",
+        "id" : "18",
         "sourceId" : "2",
         "tags" : "Relationship"
       }, {
-        "description" : "Runs telephone lung risk check journey with (questions answered, risk rating provided, CT scan appointment booked)",
+        "description" : "Runs Pilot digital app consent journey & telephone lung risk check journey with",
         "destinationId" : "1",
-        "id" : "15",
+        "id" : "19",
         "sourceId" : "2",
         "tags" : "Relationship"
       } ],
@@ -60,13 +67,13 @@
       "relationships" : [ {
         "description" : "Provides GP patient record data to",
         "destinationId" : "5",
-        "id" : "8",
+        "id" : "12",
         "sourceId" : "4",
         "tags" : "Relationship"
       }, {
         "description" : "Provides raw data to",
         "destinationId" : "6",
-        "id" : "13",
+        "id" : "17",
         "properties" : {
           "structurizr.dsl.identifier" : "rawgpdata"
         },
@@ -86,7 +93,7 @@
       "relationships" : [ {
         "description" : "Provides lung screening initial eligible cohort data (LUNGDF100) to",
         "destinationId" : "6",
-        "id" : "9",
+        "id" : "13",
         "sourceId" : "5",
         "tags" : "Relationship"
       } ],
@@ -103,16 +110,22 @@
       "relationships" : [ {
         "description" : "Sends communications using",
         "destinationId" : "7",
-        "id" : "10",
+        "id" : "14",
         "sourceId" : "6",
         "tags" : "Relationship"
       }, {
         "description" : "Selects for invitation based on risk",
         "destinationId" : "1",
-        "id" : "12",
+        "id" : "16",
         "properties" : {
           "structurizr.dsl.identifier" : "selection"
         },
+        "sourceId" : "6",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Provides Pilot ID (LUNGDF200) and telephone lung cancer risk check info (LUNGDF400) to",
+        "destinationId" : "8",
+        "id" : "20",
         "sourceId" : "6",
         "tags" : "Relationship"
       } ],
@@ -129,21 +142,80 @@
       "relationships" : [ {
         "description" : "Sends communications to",
         "destinationId" : "1",
-        "id" : "11",
+        "id" : "15",
         "sourceId" : "7",
         "tags" : "Relationship"
       } ],
       "tags" : "Element,Software System,External System"
+    }, {
+      "containers" : [ {
+        "description" : "Software System",
+        "documentation" : { },
+        "id" : "9",
+        "name" : "Pilot Digital Lung Cancer Risk App",
+        "properties" : {
+          "structurizr.dsl.identifier" : "digitallungcancerriskapp"
+        },
+        "relationships" : [ {
+          "description" : "Reads and writes Participant data to",
+          "destinationId" : "11",
+          "id" : "24",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Software System",
+        "documentation" : { },
+        "id" : "10",
+        "name" : "Pilot Digital Lung Cancer Risk GUI",
+        "properties" : {
+          "structurizr.dsl.identifier" : "digitallungcancerriskgui"
+        },
+        "relationships" : [ {
+          "description" : "Provides Participant facing GUI interface to",
+          "destinationId" : "9",
+          "id" : "23",
+          "sourceId" : "10",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "description" : "Database",
+        "documentation" : { },
+        "id" : "11",
+        "name" : "Pilot Digital Lung Cancer Risk Anonymous Database",
+        "properties" : {
+          "structurizr.dsl.identifier" : "digitallungcancerriskdb"
+        },
+        "tags" : "Element,Container"
+      } ],
+      "description" : "Software System",
+      "documentation" : { },
+      "id" : "8",
+      "location" : "Unspecified",
+      "name" : "Pilot Digital Lung Cancer Risk System",
+      "properties" : {
+        "structurizr.dsl.identifier" : "digitallungcancerrisksystem"
+      },
+      "relationships" : [ {
+        "description" : "Provides Pilot ID digital journey completion info (LUNGDF300) to",
+        "destinationId" : "6",
+        "id" : "22",
+        "sourceId" : "8",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
     } ]
   },
   "name" : "Name",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgICBtb2RlbCB7CiAgICAgICAgLy8gUGVvcGxlCiAgICAgICAgcGFydGljaXBhbnQgPSBwZXJzb24gIlBhcnRpY2lwYW50IFVzZXIiICJBIG1lbWJlciBvZiB0aGUgcHVibGljIHdobyBpcyBlbGlnaWJsZSBmb3IgbHVuZyBjYW5jZXIgcmlzayBjaGVjayIgIlBhcnRpY2lwYW50IgogICAgICAgIHN0ID0gcGVyc29uICJMdW5nIENhbmNlciBTY3JlZW5pbmcgUHJvdmlkZXIgU3RhZmYgdXNlcnMiICJJbnRlcm5hbCBzdGFmZiB1c2VycyBpbmNsdWRpbmcgY2xpbmljYWwgYW5kIGFkbWluaXN0cmF0aXZlIHN0YWZmIiAiTHVuZyBDYW5jZXIgU2NyZWVuaW5nIFByb3ZpZGVyIFN0YWZmIgoKICAgICAgICAvLyBEdW1teSAibmV1dHJhbCIgc3lzdGVtIHRvIHVzZSBhcyBkaWFncmFtIHNjb3BlCiAgICAgICAgb3ZlcnZpZXcgPSBzb2Z0d2FyZVN5c3RlbSAiTEhDIE92ZXJ2aWV3IiB7CiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJMb2dpY2FsIG92ZXJ2aWV3IHRvIGluY2x1ZGUgYWxsIHJlbGV2YW50IHN5c3RlbXMiCiAgICAgICAgfQoKICAgICAgICAvLyBSZWFsIHN5c3RlbXMKICAgICAgICBncFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJHUCBTeXN0ZW0iICJIb2xkcyBwcmltYXJ5IGNhcmUgZGF0YSBmb3IgcGF0aWVudHMiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGxvY2FsQ29ob3J0aW5nU3lzdGVtID0gc29mdHdhcmVTeXN0ZW0gIkxvY2FsIENvaG9ydGluZyBTeXN0ZW0iICJFeHRyYWN0cyBwcmltYXJ5IGNhcmUgZGF0YSBmcm9tIEdQIHN5c3RlbXMgYW5kIGlkZW50aWZpZXMgaW5pdGlhbCBlbGlnaWJsZSBjb2hvcnQiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJMb2NhbCBMSEMgUHJlYXNzZXNzbWVudCBTeXN0ZW0iICJQcm9jZXNzZXMgZGF0YSBmcm9tIEdQIHN5c3RlbSB0byBpZGVudGlmeSBhdC1yaXNrIGluZGl2aWR1YWxzLCBtYW5hZ2UgaW52aXRhdGlvbnMsIHN1cHBvcnQgbHVuZyBjYW5jZXIgcmlzayBjaGVjaywgQ1QgYXBwb2ludG1lbnQgYm9va2luZyAmIHJlZmVycmFsIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJMb2NhbCBOb3RpZmljYXRpb24gU3lzdGVtIiAiRGVsaXZlcnMgY29tbXVuaWNhdGlvbnMgKGxldHRlcnMgb25seSkgdG8gcGFydGljaXBhbnRzIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICAvLyBDb25uZWN0IHRoZSBvdmVydmlldyBzeXN0ZW0gdG8gYWxsIG90aGVycyAoZHVtbXkgcmVsYXRpb25zaGlwcyBqdXN0IHRvIG1ha2UgdGhlbSBhcHBlYXIpCiAgICAgICAgLy8gb3ZlcnZpZXcgLT4gZ3BTeXN0ZW0gIkluY2x1ZGVzIgogICAgICAgIC8vIG92ZXJ2aWV3IC0+IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAiSW5jbHVkZXMiCiAgICAgICAvLyBvdmVydmlldyAtPiBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSAiSW5jbHVkZXMiCiAgICAgICAvLyBvdmVydmlldyAtPiBwYXJ0aWNpcGFudCAiSW5jbHVkZXMiCgogICAgICAgIC8vIFJlYWwgcmVsYXRpb25zaGlwcwogICAgICAgIGdwU3lzdGVtIC0+IGxvY2FsQ29ob3J0aW5nU3lzdGVtICJQcm92aWRlcyBHUCBwYXRpZW50IHJlY29yZCBkYXRhIHRvIgogICAgICAgIGxvY2FsQ29ob3J0aW5nU3lzdGVtIC0+IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAiUHJvdmlkZXMgbHVuZyBzY3JlZW5pbmcgaW5pdGlhbCBlbGlnaWJsZSBjb2hvcnQgZGF0YSAoTFVOR0RGMTAwKSB0byIKICAgICAgICBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gLT4gbG9jYWxOb3RpZmljYXRpb25TeXN0ZW0gIlNlbmRzIGNvbW11bmljYXRpb25zIHVzaW5nIgogICAgICAgIGxvY2FsTm90aWZpY2F0aW9uU3lzdGVtIC0+IHBhcnRpY2lwYW50ICJTZW5kcyBjb21tdW5pY2F0aW9ucyB0byIKICAgICAgICBzZWxlY3Rpb24gPSBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gLT4gcGFydGljaXBhbnQgIlNlbGVjdHMgZm9yIGludml0YXRpb24gYmFzZWQgb24gcmlzayIgCiAgICAgICAgcmF3R3BEYXRhID0gZ3BTeXN0ZW0gLT4gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtICJQcm92aWRlcyByYXcgZGF0YSB0byIKICAgICAgICBzdCAtPiBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gIlVzZXMgdG8gbWFuYWdlIHRlbGVwaG9uZSBsdW5nIGNhbmNlciByaXNrIGNoZWNrLCBDVCBhcHBvaW50bWVudCBib29raW5nICYgcmVmZXJyYWwgcHJvY2VzcyIKICAgICAgICBzdCAtPiBwYXJ0aWNpcGFudCAiUnVucyB0ZWxlcGhvbmUgbHVuZyByaXNrIGNoZWNrIGpvdXJuZXkgd2l0aCAocXVlc3Rpb25zIGFuc3dlcmVkLCByaXNrIHJhdGluZyBwcm92aWRlZCwgQ1Qgc2NhbiBhcHBvaW50bWVudCBib29rZWQpIiAKICAgIH0KCiAgICB2aWV3cyB7CiAgICAgICAgc3lzdGVtQ29udGV4dCBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgZXhjbHVkZSBzZWxlY3Rpb24KICAgICAgICAgICAgZXhjbHVkZSByYXdHcERhdGEKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgICAgICB0aXRsZSAiTHVuZyBDYW5jZXIgUmlzayBDaGVjayBTeXN0ZW0gQ29udGV4dCDigJMgRnVsbCBWaWV3IChQaWxvdCBzdGF0ZSkiCiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJBbGwgc3lzdGVtcyBhbmQgdXNlciBpbnRlcmFjdGlvbnMgaW52b2x2ZWQgaW4gTHVuZyBDYW5jZXIgUmlzayBDaGVjayBzdGFnZSBvZiBMdW5nIENhbmNlciBTY3JlZW5pbmcgKFBpbG90KSIKICAgICAgICB9CgogICAgICAgIHN0eWxlcyB7CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICAgICAgZm9udFNpemUgMjIKICAgICAgICAgICAgICAgIHNoYXBlIFBlcnNvbgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlBhcnRpY2lwYW50IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM2ODY4NjgKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJMdW5nIENhbmNlciBTY3JlZW5pbmcgUHJvdmlkZXIgU3RhZmYiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA4NDI3QgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlNvZnR3YXJlIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMTE2OGJkCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXh0ZXJuYWwgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM2ODY4NjgKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJFeGlzdGluZyBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzk5OTk5OQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNDM4ZGQ1CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiV2ViIEJyb3dzZXIiIHsKICAgICAgICAgICAgICAgIHNoYXBlIFdlYkJyb3dzZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJNb2JpbGUgQXBwIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBNb2JpbGVEZXZpY2VMYW5kc2NhcGUKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgQ3lsaW5kZXIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJRdWV1ZSIgewogICAgICAgICAgICAgICAgc2hhcGUgIlBpcGUiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29tcG9uZW50IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM4NWJiZjAKICAgICAgICAgICAgICAgIGNvbG9yICMwMDAwMDAKICAgICAgICAgICAgfQogICAgICAgICAgfQogICAgfQp9"
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgICBtb2RlbCB7CiAgICAgICAgLy8gUGVvcGxlCiAgICAgICAgcGFydGljaXBhbnQgPSBwZXJzb24gIlBhcnRpY2lwYW50IFVzZXIiICJBIG1lbWJlciBvZiB0aGUgcHVibGljIHdobyBpcyBlbGlnaWJsZSBmb3IgbHVuZyBjYW5jZXIgcmlzayBjaGVjayIgIlBhcnRpY2lwYW50IgogICAgICAgIHN0ID0gcGVyc29uICJMdW5nIENhbmNlciBTY3JlZW5pbmcgUHJvdmlkZXIgU3RhZmYgdXNlcnMiICJJbnRlcm5hbCBzdGFmZiB1c2VycyBpbmNsdWRpbmcgY2xpbmljYWwgYW5kIGFkbWluaXN0cmF0aXZlIHN0YWZmIiAiTHVuZyBDYW5jZXIgU2NyZWVuaW5nIFByb3ZpZGVyIFN0YWZmIgoKICAgICAgICAvLyBEdW1teSAibmV1dHJhbCIgc3lzdGVtIHRvIHVzZSBhcyBkaWFncmFtIHNjb3BlCiAgICAgICAgb3ZlcnZpZXcgPSBzb2Z0d2FyZVN5c3RlbSAiTEhDIE92ZXJ2aWV3IiB7CiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJMb2dpY2FsIG92ZXJ2aWV3IHRvIGluY2x1ZGUgYWxsIHJlbGV2YW50IHN5c3RlbXMiCiAgICAgICAgfQoKICAgICAgICAvLyBSZWFsIHN5c3RlbXMKICAgICAgICBncFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJHUCBTeXN0ZW0iICJIb2xkcyBwcmltYXJ5IGNhcmUgZGF0YSBmb3IgcGF0aWVudHMiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGxvY2FsQ29ob3J0aW5nU3lzdGVtID0gc29mdHdhcmVTeXN0ZW0gIkxvY2FsIENvaG9ydGluZyBTeXN0ZW0iICJFeHRyYWN0cyBwcmltYXJ5IGNhcmUgZGF0YSBmcm9tIEdQIHN5c3RlbXMgYW5kIGlkZW50aWZpZXMgaW5pdGlhbCBlbGlnaWJsZSBjb2hvcnQiICJFeHRlcm5hbCBTeXN0ZW0iCgogICAgICAgIGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJMb2NhbCBMSEMgUHJlYXNzZXNzbWVudCBTeXN0ZW0iICJQcm9jZXNzZXMgZGF0YSBmcm9tIEdQIHN5c3RlbSB0byBpZGVudGlmeSBhdC1yaXNrIGluZGl2aWR1YWxzLCBtYW5hZ2UgaW52aXRhdGlvbnMsIHN1cHBvcnQgbHVuZyBjYW5jZXIgcmlzayBjaGVjaywgQ1QgYXBwb2ludG1lbnQgYm9va2luZyAmIHJlZmVycmFsIiAiRXh0ZXJuYWwgU3lzdGVtIgoKICAgICAgICBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJMb2NhbCBOb3RpZmljYXRpb24gU3lzdGVtIiAiRGVsaXZlcnMgY29tbXVuaWNhdGlvbnMgKGxldHRlcnMgb25seSkgdG8gcGFydGljaXBhbnRzIiAiRXh0ZXJuYWwgU3lzdGVtIgogICAgICAgIAogICAgICAgIGRpZ2l0YWxMdW5nQ2FuY2VyUmlza1N5c3RlbSA9IHNvZnR3YXJlU3lzdGVtICJQaWxvdCBEaWdpdGFsIEx1bmcgQ2FuY2VyIFJpc2sgU3lzdGVtIiAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tBcHAgPSBjb250YWluZXIgIlBpbG90IERpZ2l0YWwgTHVuZyBDYW5jZXIgUmlzayBBcHAiICJTb2Z0d2FyZSBTeXN0ZW0iCiAgICAgICAgICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tHVUkgPSBjb250YWluZXIgIlBpbG90IERpZ2l0YWwgTHVuZyBDYW5jZXIgUmlzayBHVUkiICJTb2Z0d2FyZSBTeXN0ZW0iCiAgICAgICAgICAgICAgICBkaWdpdGFsTHVuZ0NhbmNlclJpc2tEQiA9IGNvbnRhaW5lciAiUGlsb3QgRGlnaXRhbCBMdW5nIENhbmNlciBSaXNrIEFub255bW91cyBEYXRhYmFzZSIgIkRhdGFiYXNlIgogICAgICAgIH0KCiAgICAgICAgLy8gQ29ubmVjdCB0aGUgb3ZlcnZpZXcgc3lzdGVtIHRvIGFsbCBvdGhlcnMgKGR1bW15IHJlbGF0aW9uc2hpcHMganVzdCB0byBtYWtlIHRoZW0gYXBwZWFyKQogICAgICAgIC8vIG92ZXJ2aWV3IC0+IGdwU3lzdGVtICJJbmNsdWRlcyIKICAgICAgICAvLyBvdmVydmlldyAtPiBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gIkluY2x1ZGVzIgogICAgICAgLy8gb3ZlcnZpZXcgLT4gbG9jYWxOb3RpZmljYXRpb25TeXN0ZW0gIkluY2x1ZGVzIgogICAgICAgLy8gb3ZlcnZpZXcgLT4gcGFydGljaXBhbnQgIkluY2x1ZGVzIgoKICAgICAgICAvLyBSZWFsIHJlbGF0aW9uc2hpcHMKICAgICAgICBncFN5c3RlbSAtPiBsb2NhbENvaG9ydGluZ1N5c3RlbSAiUHJvdmlkZXMgR1AgcGF0aWVudCByZWNvcmQgZGF0YSB0byIKICAgICAgICBsb2NhbENvaG9ydGluZ1N5c3RlbSAtPiBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gIlByb3ZpZGVzIGx1bmcgc2NyZWVuaW5nIGluaXRpYWwgZWxpZ2libGUgY29ob3J0IGRhdGEgKExVTkdERjEwMCkgdG8iCiAgICAgICAgbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtIC0+IGxvY2FsTm90aWZpY2F0aW9uU3lzdGVtICJTZW5kcyBjb21tdW5pY2F0aW9ucyB1c2luZyIKICAgICAgICBsb2NhbE5vdGlmaWNhdGlvblN5c3RlbSAtPiBwYXJ0aWNpcGFudCAiU2VuZHMgY29tbXVuaWNhdGlvbnMgdG8iCiAgICAgICAgc2VsZWN0aW9uID0gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtIC0+IHBhcnRpY2lwYW50ICJTZWxlY3RzIGZvciBpbnZpdGF0aW9uIGJhc2VkIG9uIHJpc2siIAogICAgICAgIHJhd0dwRGF0YSA9IGdwU3lzdGVtIC0+IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSAiUHJvdmlkZXMgcmF3IGRhdGEgdG8iCiAgICAgICAgc3QgLT4gbG9jYWxQcmVBc3Nlc3NtZW50U3lzdGVtICJVc2VzIHRvIG1hbmFnZSBQaWxvdCBkaWdpdGFsIGFwcCBjb25zZW50LCB0ZWxlcGhvbmUgbHVuZyBjYW5jZXIgcmlzayBjaGVjaywgQ1QgYXBwb2ludG1lbnQgYm9va2luZyAmIHJlZmVycmFsIHByb2Nlc3MiCiAgICAgICAgc3QgLT4gcGFydGljaXBhbnQgIlJ1bnMgUGlsb3QgZGlnaXRhbCBhcHAgY29uc2VudCBqb3VybmV5ICYgdGVsZXBob25lIGx1bmcgcmlzayBjaGVjayBqb3VybmV5IHdpdGgiIAoKICAgICAgICBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gLT4gZGlnaXRhbEx1bmdDYW5jZXJSaXNrU3lzdGVtICJQcm92aWRlcyBQaWxvdCBJRCAoTFVOR0RGMjAwKSBhbmQgdGVsZXBob25lIGx1bmcgY2FuY2VyIHJpc2sgY2hlY2sgaW5mbyAoTFVOR0RGNDAwKSB0byIKICAgICAgICBwYXJ0aWNpcGFudCAtPiBkaWdpdGFsTHVuZ0NhbmNlclJpc2tTeXN0ZW0gIkNvbXBsZXRlcyBQaWxvdCBEaWdpdGFsIEx1bmcgQ2FuY2VyIFJpc2sgam91cm5leSB3aXRoIgogICAgICAgIGRpZ2l0YWxMdW5nQ2FuY2VyUmlza1N5c3RlbSAtPiBsb2NhbFByZUFzc2Vzc21lbnRTeXN0ZW0gIlByb3ZpZGVzIFBpbG90IElEIGRpZ2l0YWwgam91cm5leSBjb21wbGV0aW9uIGluZm8gKExVTkdERjMwMCkgdG8iCgogICAgICAgIGRpZ2l0YWxMdW5nQ2FuY2VyUmlza0dVSSAtPiBkaWdpdGFsTHVuZ0NhbmNlclJpc2tBcHAgIlByb3ZpZGVzIFBhcnRpY2lwYW50IGZhY2luZyBHVUkgaW50ZXJmYWNlIHRvIgogICAgICAgIGRpZ2l0YWxMdW5nQ2FuY2VyUmlza0FwcCAtPiBkaWdpdGFsTHVuZ0NhbmNlclJpc2tEQiAiUmVhZHMgYW5kIHdyaXRlcyBQYXJ0aWNpcGFudCBkYXRhIHRvIgogICAgfQoKICAgIHZpZXdzIHsKICAgICAgICBzeXN0ZW1Db250ZXh0IGxvY2FsUHJlQXNzZXNzbWVudFN5c3RlbSB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBleGNsdWRlIHNlbGVjdGlvbgogICAgICAgICAgICBleGNsdWRlIHJhd0dwRGF0YQogICAgICAgICAgICAvLyBhdXRvbGF5b3V0IGxyCiAgICAgICAgICAgIHRpdGxlICJMdW5nIENhbmNlciBSaXNrIENoZWNrIFN5c3RlbSBDb250ZXh0IOKAkyBGdWxsIFZpZXcgKFBpbG90IHN0YXRlKSIKICAgICAgICAgICAgZGVzY3JpcHRpb24gIkFsbCBzeXN0ZW1zIGFuZCB1c2VyIGludGVyYWN0aW9ucyBpbnZvbHZlZCBpbiBMdW5nIENhbmNlciBSaXNrIENoZWNrIHN0YWdlIG9mIEx1bmcgQ2FuY2VyIFNjcmVlbmluZyAoUGlsb3QpIgogICAgICAgIH0KCiAgICAgICAgY29udGFpbmVyIGRpZ2l0YWxMdW5nQ2FuY2VyUmlza1N5c3RlbSAiQ29udGFpbmVycyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYW5pbWF0aW9uIHsKICAgICAgICAgICAgICAgIGRpZ2l0YWxMdW5nQ2FuY2VyUmlza0dVSSBkaWdpdGFsTHVuZ0NhbmNlclJpc2tBcHAgZGlnaXRhbEx1bmdDYW5jZXJSaXNrREIKICAgICAgICAgICAgfQogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgICAgIGRlc2NyaXB0aW9uICJUaGUgY29udGFpbmVyIGRpYWdyYW0gZm9yIHRoZSBJbnRlcm5ldCBCYW5raW5nIFN5c3RlbS4iCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgICAgIGZvbnRTaXplIDIyCiAgICAgICAgICAgICAgICBzaGFwZSBQZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJQYXJ0aWNpcGFudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNjg2ODY4CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTHVuZyBDYW5jZXIgU2NyZWVuaW5nIFByb3ZpZGVyIFN0YWZmIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwODQyN0IKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzExNjhiZAogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkV4dGVybmFsIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNjg2ODY4CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRXhpc3RpbmcgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM5OTk5OTkKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzQzOGRkNQogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIldlYiBCcm93c2VyIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBXZWJCcm93c2VyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTW9iaWxlIEFwcCIgewogICAgICAgICAgICAgICAgc2hhcGUgTW9iaWxlRGV2aWNlTGFuZHNjYXBlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiRGF0YWJhc2UiIHsKICAgICAgICAgICAgICAgIHNoYXBlIEN5bGluZGVyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUXVldWUiIHsKICAgICAgICAgICAgICAgIHNoYXBlICJQaXBlIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjODViYmYwCiAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgIH0KICAgIH0KfQ=="
   },
   "views" : {
     "configuration" : {
       "branding" : { },
-      "lastSavedView" : "SystemContext-001",
+      "lastSavedView" : "Containers",
       "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
@@ -192,7 +264,12 @@
       },
       "terminology" : { }
     },
-    "systemContextViews" : [ {
+    "containerViews" : [ {
+      "animations" : [ {
+        "elements" : [ "10", "11", "9" ],
+        "order" : 1,
+        "relationships" : [ "23", "24" ]
+      } ],
       "automaticLayout" : {
         "applied" : true,
         "edgeSeparation" : 0,
@@ -202,52 +279,100 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
+      "description" : "The container diagram for the Internet Banking System.",
+      "dimensions" : {
+        "height" : 811,
+        "width" : 2390
+      },
+      "elements" : [ {
+        "id" : "9",
+        "x" : 969,
+        "y" : 171
+      }, {
+        "id" : "10",
+        "x" : 219,
+        "y" : 171
+      }, {
+        "id" : "11",
+        "x" : 1719,
+        "y" : 171
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "Containers",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "23"
+      }, {
+        "id" : "24"
+      } ],
+      "softwareSystemId" : "8"
+    } ],
+    "systemContextViews" : [ {
       "description" : "All systems and user interactions involved in Lung Cancer Risk Check stage of Lung Cancer Screening (Pilot)",
       "dimensions" : {
-        "height" : 1400,
-        "width" : 3800
+        "height" : 2225,
+        "width" : 3816
       },
       "elements" : [ {
         "id" : "1",
-        "x" : 3200,
-        "y" : 455
+        "x" : 3100,
+        "y" : 25
       }, {
         "id" : "2",
-        "x" : 975,
-        "y" : 151
+        "x" : 785,
+        "y" : 30
       }, {
         "id" : "4",
-        "x" : 200,
-        "y" : 851
+        "x" : 295,
+        "y" : 1195
       }, {
         "id" : "5",
-        "x" : 950,
-        "y" : 851
+        "x" : 1130,
+        "y" : 1210
       }, {
         "id" : "6",
-        "x" : 1700,
-        "y" : 805
+        "x" : 2020,
+        "y" : 1220
       }, {
         "id" : "7",
-        "x" : 2450,
-        "y" : 805
+        "x" : 3100,
+        "y" : 1205
+      }, {
+        "id" : "8",
+        "x" : 2150,
+        "y" : 450
       } ],
       "enterpriseBoundaryVisible" : true,
       "generatedKey" : true,
       "key" : "SystemContext-001",
       "order" : 1,
+      "paperSize" : "A3_Landscape",
       "relationships" : [ {
-        "id" : "10"
+        "id" : "12"
       }, {
-        "id" : "11"
+        "id" : "13"
       }, {
         "id" : "14"
       }, {
         "id" : "15"
       }, {
-        "id" : "8"
+        "id" : "18"
       }, {
-        "id" : "9"
+        "id" : "19"
+      }, {
+        "id" : "20",
+        "vertices" : [ {
+          "x" : 2080,
+          "y" : 910
+        } ]
+      }, {
+        "id" : "21"
+      }, {
+        "id" : "22",
+        "vertices" : [ {
+          "x" : 2550,
+          "y" : 910
+        } ]
       } ],
       "softwareSystemId" : "6",
       "title" : "Lung Cancer Risk Check System Context – Full View (Pilot state)"

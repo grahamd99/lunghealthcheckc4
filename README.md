@@ -4,13 +4,15 @@ Just a README file ...
 
 ## Repository Structure
 
-- `/structurizr`: Contains the solution architecture model and related files
+- `/structurizr`: Top level folder
+- `/structurizr/current`: Contains DSL for current (as-is) state
+- `/structurizr/pilot`: Contains DSL for Pilot (interim to-be) state
 
 ## Getting Started
 
-### 1. Lung Health Check as-is Model (Structurizr)
+### 1. Lung Health Check Models (Structurizr)
 
-To work with the model, you'll need to run Structurizr Lite locally. This requires Docker installation.
+To work with the models, you'll need to run Structurizr Lite locally. This requires Docker installation.
 
 #### Prerequisites
 
@@ -29,21 +31,21 @@ Then run the container (commands vary by operating system):
 ##### MacOS and Linux
 
 ```bash
-cd structurizr
+cd structurizr/pilot
 docker run -it --rm -p 8080:8080 -v ./:/usr/local/structurizr structurizr/lite
 ```
 
 Note: For MacOS Sequoia 15.2 and later, use this command instead to avoid sigterm exceptions:
 
 ```bash
-cd structurizr
+cd structurizr/pilot
 docker run --rm -e JAVA_TOOL_OPTIONS="-XX:UseSVE=0" -p 8080:8080 -v ./:/usr/local/structurizr structurizr/lite
 ```
 
 ##### Windows
 
 ```bash
-cd structurizr
+cd structurizr/pilot
 docker run -it --rm -p 8080:8080 -v %cd%:/usr/local/structurizr structurizr/lite
 ```
 

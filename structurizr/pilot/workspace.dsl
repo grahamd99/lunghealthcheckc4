@@ -18,6 +18,12 @@ workspace {
         localPreAssessmentSystem = softwareSystem "Local LHC Preassessment System" "Processes data from GP system to identify at-risk individuals, manage invitations, support lung cancer risk check, CT appointment booking & referral" "External System"
 
         localNotificationSystem = softwareSystem "Local Notification System" "Delivers communications (letters only) to participants" "External System"
+        
+        digitalLungCancerRiskSystem = softwareSystem "Pilot Digital Lung Cancer Risk System" "Software System" {
+                digitalLungCancerRiskApp = container "Pilot Digital Lung Cancer Risk App" "Software System"
+                digitalLungCancerRiskGUI = container "Pilot Digital Lung Cancer Risk GUI" "Software System"
+                digitalLungCancerRiskDB = container "Pilot Digital Lung Cancer Risk Anonymous Database" "Database"
+        }
 
         // Connect the overview system to all others (dummy relationships just to make them appear)
         // overview -> gpSystem "Includes"
@@ -32,8 +38,15 @@ workspace {
         localNotificationSystem -> participant "Sends communications to"
         selection = localPreAssessmentSystem -> participant "Selects for invitation based on risk" 
         rawGpData = gpSystem -> localPreAssessmentSystem "Provides raw data to"
-        st -> localPreAssessmentSystem "Uses to manage telephone lung cancer risk check, CT appointment booking & referral process"
-        st -> participant "Runs telephone lung risk check journey with (questions answered, risk rating provided, CT scan appointment booked)" 
+        st -> localPreAssessmentSystem "Uses to manage Pilot digital app consent, telephone lung cancer risk check, CT appointment booking & referral process"
+        st -> participant "Runs Pilot digital app consent journey & telephone lung risk check journey with" 
+
+        localPreAssessmentSystem -> digitalLungCancerRiskSystem "Provides Pilot ID (LUNGDF200) and telephone lung cancer risk check info (LUNGDF400) to"
+        participant -> digitalLungCancerRiskSystem "Completes Pilot Digital Lung Cancer Risk journey with"
+        digitalLungCancerRiskSystem -> localPreAssessmentSystem "Provides Pilot ID digital journey completion info (LUNGDF300) to"
+
+        digitalLungCancerRiskGUI -> digitalLungCancerRiskApp "Provides Participant facing GUI interface to"
+        digitalLungCancerRiskApp -> digitalLungCancerRiskDB "Reads and writes Participant data to"
     }
 
     views {
@@ -41,9 +54,18 @@ workspace {
             include *
             exclude selection
             exclude rawGpData
-            autolayout lr
+            // autolayout lr
             title "Lung Cancer Risk Check System Context – Full View (Pilot state)"
             description "All systems and user interactions involved in Lung Cancer Risk Check stage of Lung Cancer Screening (Pilot)"
+        }
+
+        container digitalLungCancerRiskSystem "Containers" {
+            include *
+            animation {
+                digitalLungCancerRiskGUI digitalLungCancerRiskApp digitalLungCancerRiskDB
+            }
+            autoLayout lr
+            description "The container diagram for the Internet Banking System."
         }
 
         styles {
