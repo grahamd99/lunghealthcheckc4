@@ -22,7 +22,8 @@ workspace {
         digitalLungCancerRiskSystem = softwareSystem "Pilot Digital Lung Cancer Risk System" "Software System" {
                 digitalLungCancerRiskApp = container "Pilot Digital Lung Cancer Risk App" "Software System"
                 digitalLungCancerRiskGUI = container "Pilot Digital Lung Cancer Risk GUI" "Software System"
-                digitalLungCancerRiskDB = container "Pilot Digital Lung Cancer Risk Anonymous Database" "Database"
+                //digitalLungCancerRiskDB = container "Pilot Digital Lung Cancer Risk Anonymous Database" "Database"
+                digitalLungCancerRiskDB = container "Pilot Digital Lung Cancer Risk Anonymous Database" "Anonymous digital app & telephone journey lung cancer risk scores & ratings" "Pilot Digital Lung Cancer Risk Anonymous Database" "Database"
         }
 
         // Connect the overview system to all others (dummy relationships just to make them appear)
@@ -65,7 +66,7 @@ workspace {
                 digitalLungCancerRiskGUI digitalLungCancerRiskApp digitalLungCancerRiskDB
             }
             autoLayout lr
-            description "The container diagram for the Internet Banking System."
+            description "The container diagram for the Pilot Lung Cancer Risk Assessment Digital App"
         }
 
         styles {
