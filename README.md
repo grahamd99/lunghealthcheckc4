@@ -1,3 +1,12 @@
+# 📦 This Repository is Archived
+
+![status: archived](https://img.shields.io/badge/status-archived-lightgrey)
+
+This repository is no longer maintained and has been archived.
+
+👉 Please visit the actively maintained version here: [https://github.com/NHSDigital/lung_cancer_screening](https://github.com/NHSDigital/lung_cancer_screening)
+
+
 ## Introduction
 
 Just a README file ...
@@ -45,7 +54,7 @@ docker run --rm -e JAVA_TOOL_OPTIONS="-XX:UseSVE=0" -p 8080:8080 -v ./:/usr/loca
 ##### Windows
 
 ```bash
-cd structurizr/pilot
+cd structurizr\pilot
 docker run -it --rm -p 8080:8080 -v %cd%:/usr/local/structurizr structurizr/lite
 ```
 
